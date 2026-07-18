@@ -1,0 +1,4 @@
+build/
+.cmake/
+.vscode/
+spinning_box
