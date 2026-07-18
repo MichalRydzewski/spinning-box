@@ -6,11 +6,9 @@ int main()
 {
     initAndSetupWindow();
     GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, TITLE, NULL, NULL);
-    if (windowError(window)) return 1;
+    checkForWindowError(window);
     glfwMakeContextCurrent(window);
-
-    if (gladError(window)) return 1;
-
+    checkForGladError(window);
     manageViewport(window);
 
     while (!glfwWindowShouldClose(window)) {

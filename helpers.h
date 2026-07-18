@@ -11,8 +11,8 @@ inline constexpr int HEIGHT = 600;
 
 // setup
 void initAndSetupWindow();
-bool windowError(GLFWwindow *window);
-bool gladError(GLFWwindow *window);
+void checkForWindowError(GLFWwindow *window);
+void checkForGladError(GLFWwindow *window);
 void manageViewport(GLFWwindow *window);
 
 // callbacks 

@@ -20,24 +20,22 @@ void initAndSetupWindow()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
-bool windowError(GLFWwindow* window)
+void checkForWindowError(GLFWwindow* window)
 {
     if (!window) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
-        return true;
+        std::exit(-1);
     }
-    return false;
 }
 
-bool gladError(GLFWwindow* window)
+void checkForGladError(GLFWwindow* window)
 {
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
         std::cout << "Failed to initialize GLAD" << std::endl;
         glfwTerminate();
-        return true;
+        std::exit(-1);
     }
-    return false;
 }
 
 void manageViewport(GLFWwindow* window)
