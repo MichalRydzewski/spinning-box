@@ -3,8 +3,6 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include <iostream>
-
 inline constexpr const char* TITLE = "Just a spinning box";
 inline constexpr int WIDTH = 800;
 inline constexpr int HEIGHT = 600;

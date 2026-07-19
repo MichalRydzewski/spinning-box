@@ -11,9 +11,11 @@ target_sources(
     PRIVATE 
       glad/src/glad.c
       helpers.cpp
-    
-    PUBLIC
+      shader_class.cpp
+      
+      PUBLIC
       helpers.h
+      shader_class.h
 )
 
 target_include_directories(spinning_box
