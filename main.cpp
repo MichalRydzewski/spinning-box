@@ -1,6 +1,10 @@
 #include "helpers.h"
 #include "shader_class.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #include <iostream>
 
 int main()
@@ -13,10 +17,10 @@ int main()
     manageViewport(window);
 
     float vertices[] = {
-        0.5f,  -0.5f, 0.0f,  //
-        0.5f,  0.5f,  0.0f,  //
-        -0.5f, 0.5f,  0.0f,  //
-        -0.5f, -0.5f, 0.0f,  //
+        0.5f,  -0.5f, 0.0f,  0.0f, 0.0f, 0.8f, //
+        0.5f,  0.5f,  0.0f,  0.0f, 1.0f, 0.0f, //
+        -0.5f, 0.5f,  0.0f,  0.0f, 0.0f, 0.8f, //
+        -0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f, //
     };
 
     unsigned indices[] = {
@@ -41,11 +45,17 @@ int main()
     Shader myProgram = Shader("./../shaders/standard_vert.glsl",
                               "./../shaders/standard_frag.glsl");
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
                           (void*)0);
     glEnableVertexAttribArray(0);
-    
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+                          (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+        
+    glm::mat4 transMat = glm::mat4(1.0f);
+    myProgram.use();
+
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
 
@@ -53,6 +63,11 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
         
         myProgram.use();
+        
+        // transMat = glm::mat4(1.0f);
+        transMat = glm::rotate(transMat, glm::radians(static_cast<float>(glfwGetTime() * 30)), glm::vec3(0.0f, 0.0f, 1.0f));
+        myProgram.setMat4("rotation", transMat);
+
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
@@ -60,6 +75,9 @@ int main()
         glfwPollEvents();
     }
 
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     myProgram.cleanup();
     glfwTerminate();
     return 0;
