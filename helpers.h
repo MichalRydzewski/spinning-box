@@ -19,7 +19,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 // buffers
 void initVertexBuffer(unsigned* VBO, unsigned long size, float vertices[],
                       GLenum method);
-void initElementBuffer(unsigned* EBO, unsigned long size, unsigned indices[],
+void initElementBuffer(unsigned* EBO, unsigned long size, uint8_t indices[],
                        GLenum method);
 
 // input

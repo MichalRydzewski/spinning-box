@@ -55,7 +55,7 @@ void initVertexBuffer(unsigned* VBO, unsigned long size, float vertices[],
     glBufferData(GL_ARRAY_BUFFER, size, vertices, method);
 }
 
-void initElementBuffer(unsigned* EBO, unsigned long size, unsigned indices[],
+void initElementBuffer(unsigned* EBO, unsigned long size, uint8_t indices[],
                        GLenum method)
 {
     glGenBuffers(1, EBO);
