@@ -9,6 +9,7 @@ class Shader
 
     Shader(const char* vertShader, const char* fragShader);
     ~Shader();
+    void cleanup();
 
     void use();
     void setBool(const std::string& name, bool value) const;

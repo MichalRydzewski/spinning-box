@@ -86,9 +86,16 @@ Shader::Shader(const char* vertPath, const char* fragPath)
     glDeleteShader(fragment);
 }
 
+void Shader::cleanup() {
+    if (ID != 0) {
+        glDeleteProgram(ID);
+        ID = 0;
+    }
+}
+
 Shader::~Shader()
 {
-    glDeleteProgram(ID);
+    cleanup();
 }
 
 void Shader::use()
