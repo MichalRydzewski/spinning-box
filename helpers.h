@@ -9,12 +9,18 @@ inline constexpr int HEIGHT = 600;
 
 // setup
 void initAndSetupWindow();
-void checkForWindowError(GLFWwindow *window);
-void checkForGladError(GLFWwindow *window);
-void manageViewport(GLFWwindow *window);
+void checkForWindowError(GLFWwindow* window);
+void checkForGladError(GLFWwindow* window);
+void manageViewport(GLFWwindow* window);
 
-// callbacks 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+// callbacks
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
+// buffers
+void initVertexBuffer(unsigned* VBO, unsigned long size, float vertices[],
+                      GLenum method);
+void initElementBuffer(unsigned* EBO, unsigned long size, unsigned indices[],
+                       GLenum method);
 
 // input
-void processInput(GLFWwindow *window);
+void processInput(GLFWwindow* window);

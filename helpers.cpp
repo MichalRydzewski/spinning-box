@@ -46,3 +46,19 @@ void manageViewport(GLFWwindow* window)
     glViewport(0, 0, WIDTH, HEIGHT);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 }
+
+void initVertexBuffer(unsigned* VBO, unsigned long size, float vertices[],
+                      GLenum method)
+{
+    glGenBuffers(1, VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, *VBO);
+    glBufferData(GL_ARRAY_BUFFER, size, vertices, method);
+}
+
+void initElementBuffer(unsigned* EBO, unsigned long size, unsigned indices[],
+                       GLenum method)
+{
+    glGenBuffers(1, EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indices, method);
+}
